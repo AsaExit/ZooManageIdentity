@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "AddAnimalToVeterinary";
+}
+
+<h1>AddAnimalToVeterinary</h1>
+@if (ViewBag.Message != null)
+{
+            <p>@ViewBag.Message</p>
+}
+
+<h1>Add Animal to Vet</h1>
+
+<form asp-action="AddAnimalToVeterinary" method="post">
+    <div class="form-group">
+        <label>Animal: </label>
+        <select name="id" class="form-control" asp-items="@ViewBag.Animals"></select>
+    </div> <div class="form-group">
+        <label>Veterinary: </label>
+        @*<select name="VetId" class="form-control" asp-items="@ViewBag.Veterinaries"></select>*@
+        <select name="VetId" class="form-select">
+            @foreach (var vet in ViewBag.Veterinaries)
+            {
+                    <option value="@vet.Id">@vet.Name</option>
+            }
+        </select>
+    </div>
+    <br />
+    <br />
+    <input type="submit" value="Add Animal to Veterinary" class="btn btn-primary" />
+</form>

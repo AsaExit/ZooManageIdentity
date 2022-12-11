@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Animal>
+@*@model List<Animal>*@
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Zoo Management</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Animal To The Zoo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AnimalName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Species)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnimalNickName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Veterinaries)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var animal in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => animal.AnimalName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => animal.Species)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => animal.AnimalNickName)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => animal.Veterinaries)
+                </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@animal.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@animal.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@animal.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
